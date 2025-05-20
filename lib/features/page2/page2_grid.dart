@@ -12,6 +12,9 @@ class Page2Grid extends StatefulWidget {
 class _Page2GridState extends State<Page2Grid> {
   String? _odabranaMapa;
   String? _odabranaMediaMapa;
+  String? _odabranaVeza;
+
+  final List<String> _opcijeVeze = ['Lokalno', 'Server', 'Klijent'];
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +38,19 @@ class _Page2GridState extends State<Page2Grid> {
               border: OutlineInputBorder(),
               contentPadding: EdgeInsets.symmetric(horizontal: 12.w),
             ),
-            items: ['Veza 1', 'Veza 2']
-                .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+            value: _odabranaVeza,
+            items: _opcijeVeze
+                .map((veza) => DropdownMenuItem(
+                      value: veza,
+                      child: Text(veza),
+                    ))
                 .toList(),
-            onChanged: (value) {},
+            onChanged: (value) {
+              setState(() {
+                _odabranaVeza = value;
+              });
+              print("Odabrana veza: ");
+            },
           ),
           SizedBox(height: 30.h),
           Wrap(
@@ -63,7 +75,9 @@ class _Page2GridState extends State<Page2Grid> {
                   print("MEDIA mapa: ");
                 }
               }),
-              _buildButton('Veza'),
+              _buildButton(_odabranaVeza ?? 'Veza', onPressed: () {
+                // Može kasnije otvoriti modal/postavke
+              }),
               _buildButton('SPREMI PROFIL'),
             ],
           ),
