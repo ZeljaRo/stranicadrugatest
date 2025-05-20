@@ -4,3 +4,8 @@ Future<String?> odaberiTekstMapu() async {
   final result = await FilePicker.platform.getDirectoryPath();
   return result;
 }
+
+Future<String?> odaberiMediaMapu() async {
+  final result = await FilePicker.platform.getDirectoryPath();
+  return result;
+}

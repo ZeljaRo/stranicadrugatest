@@ -11,6 +11,7 @@ class Page2Grid extends StatefulWidget {
 
 class _Page2GridState extends State<Page2Grid> {
   String? _odabranaMapa;
+  String? _odabranaMediaMapa;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,15 @@ class _Page2GridState extends State<Page2Grid> {
                   print("TXT mapa: ");
                 }
               }),
-              _buildButton('Odaberi prateæu mapu'),
+              _buildButton(_odabranaMediaMapa ?? 'Odaberi prateæu mapu', onPressed: () async {
+                final mediaFolder = await odaberiMediaMapu();
+                if (mediaFolder != null) {
+                  setState(() {
+                    _odabranaMediaMapa = mediaFolder;
+                  });
+                  print("MEDIA mapa: ");
+                }
+              }),
               _buildButton('Veza'),
               _buildButton('SPREMI PROFIL'),
             ],
